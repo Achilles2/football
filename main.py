@@ -38,68 +38,84 @@ GA_tot_list = [0] * TOTAL_TEAMS
 def host(game):
     return game["teams"]["home"]['name']
 
+
 def guest(game):
     return game["teams"]["away"]["name"]
+
 
 def host_goals(game):
     return game["goals"]["home"]
 
+
 def guest_goals(game):
     return game["goals"]["away"]
+
 
 def is_host(team, game):
     return team == host(game)
 
+
 def is_guest(team, game):
     return team == guest(game)
 
+
 def GF_as_host(game, team):
     if is_host(team, game):
-        if host_goals(game):
-            return host_goals(game)
+        goals = host_goals(game)
+        if goals:
+            return goals
     return 0
 
 
 def GF_as_away(game, team):
     if is_guest(team, game):
-        if guest_goals(game):
-            return guest_goals(game)
+        goals = guest_goals(game)
+        if goals:
+            return goals
     return 0
 
 
 def GA_as_host(game, team):
     if is_host(team, game):
-        if guest_goals(game):
-            return guest_goals(game)
+        goals = guest_goals(game)
+        if goals:
+            return goals
     return 0
 
 
 def GA_as_away(game, team):
     if is_guest(team, game):
-        if host_goals(game):
-            return host_goals(game)
+        goals = host_goals(game)
+        if goals:
+            return goals
     return 0
 
 
 def GF_tot(game, team):
-    if is_host(team, game) or is_guest(team, game):
-        if is_host(team, game):
-            if host_goals(game):
-                return host_goals(game)
+    host = is_host(team, game)
+    if host or is_guest(team, game):
+        if host:
+            goals1 = host_goals(game)
+            if goals1:
+                return goals1
         else:
-            if guest_goals(game):
-                return guest_goals(game)
+            goals = guest_goals(game)
+            if goals:
+                return goals
     return 0
 
 
 def GA_tot(game, team):
-    if is_host(team, game) or is_guest(team, game):
-        if is_host(team, game):
-            if guest_goals(game):
-                return guest_goals(game)
+    host = is_host(team, game)
+    if host or is_guest(team, game):
+        if host:
+            goals = guest_goals(game)
+            if goals:
+                return goals
         else:
-            if host_goals(game):
-                return host_goals(game)
+            goals1 = host_goals(game)
+            if goals1:
+                return goals1
     return 0
 
 
