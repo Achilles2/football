@@ -93,29 +93,27 @@ def GA_as_away(game, team):
 
 def GF_tot(game, team):
     host = is_host(team, game)
-    if host or is_guest(team, game):
-        if host:
-            goals1 = host_goals(game)
-            if goals1:
-                return goals1
-        else:
-            goals = guest_goals(game)
-            if goals:
-                return goals
+    if host:
+        goals1 = host_goals(game)
+        if goals1:
+            return goals1
+    elif is_guest(team, game):
+        goals = guest_goals(game)
+        if goals:
+            return goals
     return 0
 
 
 def GA_tot(game, team):
     host = is_host(team, game)
-    if host or is_guest(team, game):
-        if host:
-            goals = guest_goals(game)
-            if goals:
-                return goals
-        else:
-            goals1 = host_goals(game)
-            if goals1:
-                return goals1
+    if host:
+        goals = guest_goals(game)
+        if goals:
+            return goals
+    elif is_guest(team, game):
+        goals1 = host_goals(game)
+        if goals1:
+            return goals1
     return 0
 
 
