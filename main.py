@@ -118,7 +118,7 @@ def GA_as_any(game, team):
 def create_results():
     for index, team in enumerate(visited_teams):
         for game in response:
-            if int(''.join(filter(str.isdigit, game["league"]["round"]))) > 6 & int(''.join(filter(str.isdigit, game["league"]["round"]))) < 33:
+            if int(''.join(filter(str.isdigit, game["league"]["round"]))) > 6 and int(''.join(filter(str.isdigit, game["league"]["round"]))) < 33:
                 GF_as_host_list[index] += GF_as_host(team=team, game=game)
                 GF_as_away_list[index] += GF_as_away(team=team, game=game)
                 GA_as_host_list[index] += GA_as_host(team=team, game=game)
