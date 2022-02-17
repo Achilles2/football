@@ -1,7 +1,7 @@
 from json import loads
 from pandas import DataFrame
 
-FILE_NAME = 'league39_season2021.json'
+FILE_NAME = 'league39_season2020.json'
 
 with open(FILE_NAME) as f:
     lines = f.readlines()
@@ -91,9 +91,8 @@ def GA_as_away(game, team):
     return 0
 
 
-def GF_tot(game, team):
-    host = is_host(team, game)
-    if host:
+def GF_as_any(game, team):
+    if is_host(team, game):
         goals1 = host_goals(game)
         if goals1:
             return goals1
@@ -104,9 +103,8 @@ def GF_tot(game, team):
     return 0
 
 
-def GA_tot(game, team):
-    host = is_host(team, game)
-    if host:
+def GA_as_any(game, team):
+    if is_host(team, game):
         goals = guest_goals(game)
         if goals:
             return goals
@@ -120,12 +118,13 @@ def GA_tot(game, team):
 def create_results():
     for index, team in enumerate(visited_teams):
         for game in response:
-            GF_as_host_list[index] += GF_as_host(team=team, game=game)
-            GF_as_away_list[index] += GF_as_away(team=team, game=game)
-            GA_as_host_list[index] += GA_as_host(team=team, game=game)
-            GA_as_away_list[index] += GA_as_away(team=team, game=game)
-            GF_tot_list[index] += GF_tot(team=team, game=game)
-            GA_tot_list[index] += GA_tot(team=team, game=game)
+            if int(''.join(filter(str.isdigit, game["league"]["round"]))) > 6 & int(''.join(filter(str.isdigit, game["league"]["round"]))) < 33:
+                GF_as_host_list[index] += GF_as_host(team=team, game=game)
+                GF_as_away_list[index] += GF_as_away(team=team, game=game)
+                GA_as_host_list[index] += GA_as_host(team=team, game=game)
+                GA_as_away_list[index] += GA_as_away(team=team, game=game)
+                GF_tot_list[index] += GF_as_any(team=team, game=game)
+                GA_tot_list[index] += GA_as_any(team=team, game=game)
 
 
 def print_results():
