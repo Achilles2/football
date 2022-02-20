@@ -14,7 +14,5 @@ def is_allowed_round(round_number):
 
 def response_from_json(file_name):
     with open(file_name) as f:
-        lines = f.readlines()
-        as_str = ''.join(lines)
-        as_dict = loads(as_str)
+        as_dict = loads(f.read())
         return as_dict['response']
