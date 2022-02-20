@@ -6,7 +6,7 @@ def round_num(round_str: str):
     return int(s)
 
 
-def round_in_range(round_number):
+def is_allowed_round(round_number):
     if 6 < int(round_number) < 33:
         return True
     return False
