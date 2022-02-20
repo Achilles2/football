@@ -114,11 +114,17 @@ def GA_as_any(game, team):
             return goals1
     return 0
 
+def round_num(round_str: str):
+    s = round_str.lstrip("Regular Season - ")
+    return int(s)
 
+#s = game["league"]["round"].lstrip("Regular Season - ")
 def create_results():
     for index, team in enumerate(visited_teams):
         for game in response:
-            if int(''.join(filter(str.isdigit, game["league"]["round"]))) > 6 and int(''.join(filter(str.isdigit, game["league"]["round"]))) < 33:
+            round_str = game["league"]["round"]
+            round_n = round_num(round_str=round_str)
+            if  6 < round_n < 33:
                 GF_as_host_list[index] += GF_as_host(team=team, game=game)
                 GF_as_away_list[index] += GF_as_away(team=team, game=game)
                 GA_as_host_list[index] += GA_as_host(team=team, game=game)
