@@ -64,7 +64,7 @@ def is_guest(team, game):
 def GF_as_host(game, team):
     if is_host(team, game):
         goals = host_goals(game)
-        if goals:
+        if goals is not None:
             return goals
     return 0
 
@@ -72,7 +72,7 @@ def GF_as_host(game, team):
 def GF_as_away(game, team):
     if is_guest(team, game):
         goals = guest_goals(game)
-        if goals:
+        if goals is not None:
             return goals
     return 0
 
@@ -80,7 +80,7 @@ def GF_as_away(game, team):
 def GA_as_host(game, team):
     if is_host(team, game):
         goals = guest_goals(game)
-        if goals:
+        if goals is not None:
             return goals
     return 0
 
@@ -88,7 +88,7 @@ def GA_as_host(game, team):
 def GA_as_away(game, team):
     if is_guest(team, game):
         goals = host_goals(game)
-        if goals:
+        if goals is not None:
             return goals
     return 0
 
@@ -96,11 +96,11 @@ def GA_as_away(game, team):
 def GF_as_any(game, team):
     if is_host(team, game):
         goals1 = host_goals(game)
-        if goals1:
+        if goals1 is not None:
             return goals1
     elif is_guest(team, game):
         goals = guest_goals(game)
-        if goals:
+        if goals is not None:
             return goals
     return 0
 
@@ -108,11 +108,11 @@ def GF_as_any(game, team):
 def GA_as_any(game, team):
     if is_host(team, game):
         goals = guest_goals(game)
-        if goals:
+        if goals is not None:
             return goals
     elif is_guest(team, game):
         goals1 = host_goals(game)
-        if goals1:
+        if goals1 is not None:
             return goals1
     return 0
 
