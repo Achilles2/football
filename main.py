@@ -30,11 +30,11 @@ TOTAL_TEAMS = len(visited_teams)
 visited_teams.sort()
 
 GF_as_host_list = [0] * TOTAL_TEAMS
-GF_as_away_list = [0] * TOTAL_TEAMS
+GF_as_guest_list = [0] * TOTAL_TEAMS
 GA_as_host_list = [0] * TOTAL_TEAMS
-GA_as_away_list = [0] * TOTAL_TEAMS
-GF_tot_list = [0] * TOTAL_TEAMS
-GA_tot_list = [0] * TOTAL_TEAMS
+GA_as_guest_list = [0] * TOTAL_TEAMS
+GF_as_any_list = [0] * TOTAL_TEAMS
+GA_as_any_list = [0] * TOTAL_TEAMS
 
 
 def host(game):
@@ -124,32 +124,32 @@ def create_results():
             round_n = round_num(round_str=round_str)
             if is_allowed_round(round_n):
                 GF_as_host_list[index] += GF_as_host(team=team, game=game)
-                GF_as_away_list[index] += GF_as_away(team=team, game=game)
+                GF_as_guest_list[index] += GF_as_away(team=team, game=game)
                 GA_as_host_list[index] += GA_as_host(team=team, game=game)
-                GA_as_away_list[index] += GA_as_away(team=team, game=game)
-                GF_tot_list[index] += GF_as_any(team=team, game=game)
-                GA_tot_list[index] += GA_as_any(team=team, game=game)
+                GA_as_guest_list[index] += GA_as_away(team=team, game=game)
+                GF_as_any_list[index] += GF_as_any(team=team, game=game)
+                GA_as_any_list[index] += GA_as_any(team=team, game=game)
 
 
 def print_results():
+    print(GF_as_any_list)
+    print(GA_as_any_list)
     print(GF_as_host_list)
-    print(GF_as_away_list)
     print(GA_as_host_list)
-    print(GA_as_away_list)
-    print(GF_tot_list)
-    print(GA_tot_list)
+    print(GF_as_guest_list)
+    print(GA_as_guest_list)
 
 
 create_results()
 print_results()
 
 data = {"team": visited_teams,
+        "GF_as_any": GF_as_any_list,
+        "GA_as_any": GA_as_any_list,
         "GF_as_host": GF_as_host_list,
-        "GF_as_hosted": GF_as_away_list,
+        "GF_as_hosted": GF_as_guest_list,
         "GA_as_host": GA_as_host_list,
-        "GA_as_hosted": GA_as_away_list,
-        "GF_total": GF_tot_list,
-        "GA_total": GA_tot_list}
+        "GA_as_hosted": GA_as_guest_list}
 
 df = DataFrame(data)
 
