@@ -3,7 +3,7 @@ from pandas import DataFrame
 
 from utils import round_num, is_allowed_round
 
-FILE_NAME = 'league39_season2020.json'
+FILE_NAME = 'data/league39_season2020.json'
 
 with open(FILE_NAME) as f:
     lines = f.readlines()
