@@ -1,7 +1,7 @@
 from json import loads
 
 
-def round_num(round_str: str):
+def num_of_round(round_str: str):
     s = round_str.lstrip("Regular Season - ")
     return int(s)
 

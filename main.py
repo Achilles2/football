@@ -1,18 +1,11 @@
-from json import loads
 from pandas import DataFrame
 
-from utils import round_num, is_allowed_round
+from utils import num_of_round, is_allowed_round, response_from_json
 
 FILE_NAME = 'data/league39_season2020.json'
-
-with open(FILE_NAME) as f:
-    f_content = f.read()
-    as_dict = loads(f_content)
-
-response = as_dict['response']
+response = response_from_json(FILE_NAME)
 
 all_games = []
-
 visited_teams = []
 
 for g in response:
@@ -120,7 +113,7 @@ def create_results():
     for index, team in enumerate(visited_teams):
         for game in response:
             round_str = game["league"]["round"]
-            round_n = round_num(round_str=round_str)
+            round_n = num_of_round(round_str=round_str)
             if is_allowed_round(round_n):
                 GF_as_host_list[index] += GF_as_host(team=team, game=game)
                 GF_as_guest_list[index] += GF_as_away(team=team, game=game)
