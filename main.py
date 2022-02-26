@@ -147,8 +147,8 @@ data = {"team": visited_teams,
         "GF_as_any": GF_as_any_list,
         "GA_as_any": GA_as_any_list,
         "GF_as_host": GF_as_host_list,
-        "GF_as_hosted": GF_as_guest_list,
         "GA_as_host": GA_as_host_list,
+        "GF_as_hosted": GF_as_guest_list,
         "GA_as_hosted": GA_as_guest_list}
 
 df = DataFrame(data)
