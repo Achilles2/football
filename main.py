@@ -6,9 +6,8 @@ from utils import round_num, is_allowed_round
 FILE_NAME = 'data/league39_season2020.json'
 
 with open(FILE_NAME) as f:
-    lines = f.readlines()
-    as_str = ''.join(lines)
-    as_dict = loads(as_str)
+    f_content = f.read()
+    as_dict = loads(f_content)
 
 response = as_dict['response']
 
