@@ -2,7 +2,7 @@ from pandas import DataFrame
 
 from utils import num_of_round, is_allowed_round, response_from_json
 
-FILE_NAME = 'data/league39_season2020.json'
+FILE_NAME = 'data/league39/2020/games.json'
 response = response_from_json(FILE_NAME)
 
 all_games = []
